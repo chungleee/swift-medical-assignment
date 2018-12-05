@@ -5,8 +5,20 @@
   "repository": "git@github.com:chungleee/swift-medical-assignment.git",
   "author": "Leon <leon.karho.chung@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "parcel ./public/index.html",
+    "build": "parcel build ./public/index.html --out-dir build"
+  },
   "devDependencies": {
-    "babel-preset-react-app": "^6.1.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/preset-react": "^7.0.0",
     "parcel-bundler": "^1.10.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1"
   }
 }
