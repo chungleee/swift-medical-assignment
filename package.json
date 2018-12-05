@@ -1,0 +1,12 @@
+{
+  "name": "swift-medical-assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:chungleee/swift-medical-assignment.git",
+  "author": "Leon <leon.karho.chung@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-react-app": "^6.1.0",
+    "parcel-bundler": "^1.10.3"
+  }
+}
