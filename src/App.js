@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import PatientList from './components/PatientList';
 
 class App extends Component {
 	render() {
 		return (
-			<div>hello {this.props.name}</div>
+			<div>
+				<PatientList />
+			</div>
 		)
 	}
 }
