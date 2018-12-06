@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 class PatientList extends Component {
@@ -28,7 +29,9 @@ class PatientList extends Component {
 			return this.state.patientList.map((patient) => {
 				// render list
 				return (
-					<li className='has-text-danger'>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</li>
+					<li key={patient.id} className='has-text-danger'>
+						<Link to={`/patients/${patient.id}`}>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</Link>
+					</li>
 				)	
 			})
 		}
@@ -37,7 +40,7 @@ class PatientList extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Patient List Component</h1>
+				<h1 className='is-size-3'>Patient List Component</h1>
 				<ul>
 					{ this.renderList() }
 				</ul>
