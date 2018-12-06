@@ -28,7 +28,7 @@ class PatientList extends Component {
 			return this.state.patientList.map((patient) => {
 				// render list
 				return (
-					<li>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</li>
+					<li className='has-text-danger'>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</li>
 				)	
 			})
 		}
