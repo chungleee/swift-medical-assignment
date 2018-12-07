@@ -64,7 +64,18 @@ class PatientInfo extends Component {
 
 					{/* wounds comp */}
 					<div>
-						
+						{
+							this.state.wounds.map((wound) => {
+								return (
+									<div>
+										<img src={wound.attributes.imageUrl} alt={wound.attributes.type}/>
+										<p>Body location: { wound.attributes.bodyLocation }</p>
+										<p>Healed: {wound.attributes.resolved ? 'yes' : 'no' }</p>
+										<p>Acquired whilst in care center: {wound.attributes.inHouseAcquired ? 'yes' : 'no' }</p>
+									</div>
+								)
+							})
+						}
 					</div>
 				</div>
 			)
