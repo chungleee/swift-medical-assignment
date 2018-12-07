@@ -4,11 +4,12 @@ import axios from 'axios'
 class PatientInfo extends Component {
 	state = {
 		attributes: {},
-		wounds: {}
+		wounds: []
 	}
 	// fetch info on mount
 	async componentDidMount() {
 		await this.getPatientInfo(this.props.match.params.patientId)
+		await this.getPatientWounds(this.props.match.params.patientId)
 	}
 
 	// function to fetch patient info with id
@@ -16,12 +17,24 @@ class PatientInfo extends Component {
 		axios.get(`http://0.0.0.0:3000/patients/${id}`)
 			.then((response) => {
 				this.setState({
-					attributes: response.data.data.attributes,
-					wounds: response.data.data.relationships.wounds
+					attributes: response.data.data.attributes
 				})
 			})
 			.catch((error) => {
 				console.log(error)	
+			})
+	}
+
+	// fetch patient wounds 
+	getPatientWounds = (id) => {
+		axios.get(`http://0.0.0.0:3000/patients/${id}/wounds`)
+			.then((response) => {
+				this.setState({
+					wounds: response.data.data
+				})
+			})
+			.catch((error) => {
+				console.log(error)
 			})
 	}
 	
@@ -50,7 +63,9 @@ class PatientInfo extends Component {
 					</div>
 
 					{/* wounds comp */}
-					<div></div>
+					<div>
+						
+					</div>
 				</div>
 			)
 	}
