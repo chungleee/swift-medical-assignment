@@ -3,7 +3,8 @@ import axios from 'axios'
 
 class PatientInfo extends Component {
 	state = {
-		info: {}
+		attributes: {},
+		wounds: {}
 	}
 	// fetch info on mount
 	async componentDidMount() {
@@ -15,7 +16,8 @@ class PatientInfo extends Component {
 		axios.get(`http://0.0.0.0:3000/patients/${id}`)
 			.then((response) => {
 				this.setState({
-					info: response.data.data
+					attributes: response.data.data.attributes,
+					wounds: response.data.data.relationships.wounds
 				})
 			})
 			.catch((error) => {
@@ -23,13 +25,33 @@ class PatientInfo extends Component {
 			})
 	}
 	
+	// if both state object properties are not populated, render loading
 	render() {
-		return Object.keys(this.state.info).length > 0
+		const { firstName, lastName, address, avatarUrl, bedNumber, dateOfBirth, roomNumber } = this.state.attributes
+
+		return Object.keys(this.state.attributes).length === 0 && Object.keys(this.state.wounds).length === 0
 			? (
-				<div>{this.state.info.attributes.firstName}</div>
+				<div>...Loading...</div>
 			)
 			: (
-				<div>...Loading...</div>
+				// todo1: patient info component where i pass props
+				// todo2: patient wounds component
+				<div>
+					{/* info comp */}
+					<div>
+						<h1 className="is-size3">Patient Identification: {this.props.match.params.patientId}</h1>
+						<img src={avatarUrl}/>
+						<p>First name: { firstName }</p>
+						<p>Last name: { lastName }</p>
+						<p>DoB: { dateOfBirth }</p>
+						<p>Address: { address }</p>
+						<p>Room #: { roomNumber }</p>
+						<p>Bed #: { bedNumber }</p>
+					</div>
+
+					{/* wounds comp */}
+					<div></div>
+				</div>
 			)
 	}
 }
