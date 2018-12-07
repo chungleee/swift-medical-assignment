@@ -40,7 +40,7 @@ class PatientList extends Component {
 	render() {
 		return (
 			<div>
-				<h1 className='is-size-3'>Patient List Component</h1>
+				<h1 className='is-size-2'>Patient List Component</h1>
 				<ul>
 					{ this.renderList() }
 				</ul>
