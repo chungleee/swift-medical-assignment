@@ -1,7 +1,9 @@
-import { GET_PATIENTS } from '../actions/types'
+import { GET_PATIENTS, GET_PATIENT_INFO, GET_PATIENT_WOUNDS } from '../actions/types'
 
 const initialState = {
-	patientList: []
+	patientList: [],
+	attributes: {},
+	wounds: []
 }
 
 export default (state = initialState, action) => {
@@ -10,6 +12,16 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				patientList: action.payload
+			}
+		case GET_PATIENT_INFO:
+			return {
+				...state,
+				attributes: action.payload
+			}
+		case GET_PATIENT_WOUNDS:
+			return {
+				...state,
+				wounds: action.payload
 			}
 		default: 
 			return state
