@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getPatients } from '../actions/patientActions'
-import axios from 'axios'
 
 class PatientList extends Component {
 	// // get list of patient
