@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPatientInfo, getPatientWounds } from '../actions/patientActions'
 import PatientCard from './PatientCard';
+import WoundCard from './WoundCard';
 
 class PatientInfo extends Component {
 	// fetch info on mount
@@ -39,12 +40,13 @@ class PatientInfo extends Component {
 						{
 							this.props.wounds.map((wound) => {
 								return (
-									<div key={wound.id}>
-										<img src={wound.attributes.imageUrl} alt={wound.attributes.type}/>
-										<p>Body location: { wound.attributes.bodyLocation }</p>
-										<p>Healed: {wound.attributes.resolved ? 'yes' : 'no' }</p>
-										<p>Acquired whilst in care center: {wound.attributes.inHouseAcquired ? 'yes' : 'no' }</p>
-									</div>
+									<WoundCard 
+										id={wound.id}
+										woundImg={wound.attributes.imageUrl}
+										bodyLocation={wound.attributes.bodyLocation}
+										resolved={wound.attributes.resolved}
+										inHouseAcquired={wound.attributes.inHouseAcquired}
+									/>
 								)
 							})
 						}

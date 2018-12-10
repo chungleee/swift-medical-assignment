@@ -7,7 +7,7 @@ const PatientCard = (props) => {
 				<div className="media">
 					<div className="media-left">
 						<div className="image is-128x128">
-							<img src={props.img} alt=""/>
+							<img src={props.img} alt={props.firstName}/>
 						</div>
 					</div>
 					<div className="media-content">
