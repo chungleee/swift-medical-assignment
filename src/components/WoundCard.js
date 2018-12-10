@@ -15,9 +15,7 @@ const WoundCard = (props) => {
 						<p>Location on body: {props.bodyLocation}</p>
 						<p>Acquired whilst in care center: {props.inHouseAcquired ? 'yes' : 'no' }</p>
 						<p>Healed: {props.resolved ? 'yes' : 'no' }</p>
-						<button className="button is-warning is-rounded">
-							<Link to={`/wounds/${props.woundId}`}>Edit</Link>
-						</button>
+						<Link className='button is-warning is-rounded' to={`/wounds/${props.woundId}`}>Edit</Link>
 					</div>
 				</div>
 			</div>
