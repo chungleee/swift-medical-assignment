@@ -1,4 +1,4 @@
-import { GET_WOUND_BY_ID } from './types'
+import { GET_WOUND_BY_ID, UPDATE_WOUND_BY_ID, HANDLE_ONCHANGE } from './types'
 import axios from 'axios'
 
 export const getWound = (id) => {

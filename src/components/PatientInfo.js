@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getPatientInfo, getPatientWounds } from '../actions/patientActions'
 import PatientCard from './PatientCard';
@@ -23,6 +24,7 @@ class PatientInfo extends Component {
 				// todo1: patient info component where i pass props
 				// todo2: patient wounds component
 				<div>
+					<Link to='/'>Patient List</Link>
 					{/* info component */}
 					<PatientCard 
 						firstName={firstName}

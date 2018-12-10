@@ -1,4 +1,4 @@
-import { GET_WOUND_BY_ID } from '../actions/types'
+import { GET_WOUND_BY_ID, UPDATE_WOUND_BY_ID } from '../actions/types'
 
 const initialState = {
 	wound: {}
