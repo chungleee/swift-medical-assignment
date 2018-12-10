@@ -1,48 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getPatientInfo, getPatientWounds } from '../actions/patientActions'
 import axios from 'axios'
 
 class PatientInfo extends Component {
-	state = {
-		attributes: {},
-		wounds: []
-	}
 	// fetch info on mount
 	async componentDidMount() {
-		await this.getPatientInfo(this.props.match.params.patientId)
-		await this.getPatientWounds(this.props.match.params.patientId)
-	}
-
-	// function to fetch patient info with id
-	getPatientInfo = (id) => {
-		axios.get(`http://0.0.0.0:3000/patients/${id}`)
-			.then((response) => {
-				this.setState({
-					attributes: response.data.data.attributes
-				})
-			})
-			.catch((error) => {
-				console.log(error)	
-			})
-	}
-
-	// fetch patient wounds 
-	getPatientWounds = (id) => {
-		axios.get(`http://0.0.0.0:3000/patients/${id}/wounds`)
-			.then((response) => {
-				this.setState({
-					wounds: response.data.data
-				})
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+		await this.props.getPatientInfo(this.props.match.params.patientId)
+		await this.props.getPatientWounds(this.props.match.params.patientId)
 	}
 	
 	// if both state object properties are not populated, render loading
 	render() {
-		const { firstName, lastName, address, avatarUrl, bedNumber, dateOfBirth, roomNumber } = this.state.attributes
+		const { firstName, lastName, address, avatarUrl, bedNumber, dateOfBirth, roomNumber } = this.props.attributes
 
-		return Object.keys(this.state.attributes).length === 0 && Object.keys(this.state.wounds).length === 0
+		return Object.keys(this.props.attributes).length === 0 && Object.keys(this.props.wounds).length === 0
 			? (
 				<div>...Loading...</div>
 			)
@@ -65,7 +37,7 @@ class PatientInfo extends Component {
 					{/* wounds comp */}
 					<div>
 						{
-							this.state.wounds.map((wound) => {
+							this.props.wounds.map((wound) => {
 								return (
 									<div>
 										<img src={wound.attributes.imageUrl} alt={wound.attributes.type}/>
@@ -82,4 +54,12 @@ class PatientInfo extends Component {
 	}
 }
 
-export default PatientInfo
+const mapStateToProps = (state) => {
+	return {
+		attributes: state.patients.attributes,
+		wounds: state.patients.wounds
+	}
+}
+
+
+export default connect(mapStateToProps, { getPatientInfo, getPatientWounds })(PatientInfo)
