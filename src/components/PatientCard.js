@@ -11,7 +11,7 @@ const PatientCard = (props) => {
 						</div>
 					</div>
 					<div className="media-content">
-						<p className="title is-4">{props.firstName + props.lastName}</p>
+						<p className="title is-4">{`${props.firstName} ${props.lastName}`}</p>
 						<p className="subtitle is-6">Patient Identification: {props.id}</p>
 					</div>
 				</div>

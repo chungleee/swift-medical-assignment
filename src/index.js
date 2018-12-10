@@ -4,13 +4,15 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import '../node_modules/bulma/css/bulma.min.css'
 import patientsReducer from './reducers/patientsReducer'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import woundsReducer from './reducers/woundsReducer'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 // combine all reducers
 const rootReducer = combineReducers({
-	patients: patientsReducer
+	patients: patientsReducer,
+	woundById: woundsReducer
 })
 
 // initial state
@@ -23,7 +25,10 @@ const middlewares = [thunk]
 const store = createStore(
 	rootReducer, 
 	initialState, 
-	applyMiddleware(...middlewares)
+	compose(
+		applyMiddleware(...middlewares),
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	)
 )
 
 ReactDOM.render(
