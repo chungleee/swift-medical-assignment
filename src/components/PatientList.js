@@ -18,7 +18,9 @@ class PatientList extends Component {
 				// render list
 				return (
 					<li key={patient.id} className='has-text-danger'>
-						<Link to={`/patients/${patient.id}`}>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</Link>
+						<p>
+							<Link to={`/patients/${patient.id}`}>{`${patient.attributes.firstName} ${patient.attributes.lastName}`}</Link>
+						</p>
 					</li>
 				)	
 			})
@@ -26,16 +28,23 @@ class PatientList extends Component {
 	}
 
 	render() {
-		console.log(this.props.patients)
 		return (
-			<div>
-				<h1 className='is-size-2'>Patient List Component</h1>
-				<ul>
-					{
-						this.renderList()
-					}
-				</ul>
-			</div>
+			<section className="hero">
+				<div className="hero-body">
+					<div className="container">
+						<h1 className="title" style={{'textAlign': 'center'}}>Patient List</h1>
+						<div className="media">
+							<div className="media-content">
+								<div className="content">
+									{
+										this.renderList()
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		)
 	}
 }

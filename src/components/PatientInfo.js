@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPatientInfo, getPatientWounds } from '../actions/patientActions'
-import axios from 'axios'
+import PatientCard from './PatientCard';
 
 class PatientInfo extends Component {
 	// fetch info on mount
@@ -23,23 +23,23 @@ class PatientInfo extends Component {
 				// todo2: patient wounds component
 				<div>
 					{/* info comp */}
-					<div>
-						<h1 className="is-size3">Patient Identification: {this.props.match.params.patientId}</h1>
-						<img src={avatarUrl}/>
-						<p>First name: { firstName }</p>
-						<p>Last name: { lastName }</p>
-						<p>DoB: { dateOfBirth }</p>
-						<p>Address: { address }</p>
-						<p>Room #: { roomNumber }</p>
-						<p>Bed #: { bedNumber }</p>
-					</div>
+					<PatientCard 
+						firstName={firstName}
+						lastName={lastName}
+						img={avatarUrl}
+						id={this.props.match.params.patientId}
+						dob={dateOfBirth}
+						address={address}
+						room={roomNumber}
+						bed={bedNumber}
+					/>
 
 					{/* wounds comp */}
 					<div>
 						{
 							this.props.wounds.map((wound) => {
 								return (
-									<div>
+									<div key={wound.id}>
 										<img src={wound.attributes.imageUrl} alt={wound.attributes.type}/>
 										<p>Body location: { wound.attributes.bodyLocation }</p>
 										<p>Healed: {wound.attributes.resolved ? 'yes' : 'no' }</p>
