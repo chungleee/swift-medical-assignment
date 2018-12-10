@@ -6,9 +6,9 @@ import WoundCard from './WoundCard';
 
 class PatientInfo extends Component {
 	// fetch info on mount
-	async componentDidMount() {
-		await this.props.getPatientInfo(this.props.match.params.patientId)
-		await this.props.getPatientWounds(this.props.match.params.patientId)
+	componentDidMount() {
+		this.props.getPatientInfo(this.props.match.params.patientId)
+		this.props.getPatientWounds(this.props.match.params.patientId)
 	}
 	
 	// if both state object properties are not populated, render loading
@@ -23,7 +23,7 @@ class PatientInfo extends Component {
 				// todo1: patient info component where i pass props
 				// todo2: patient wounds component
 				<div>
-					{/* info comp */}
+					{/* info component */}
 					<PatientCard 
 						firstName={firstName}
 						lastName={lastName}
@@ -35,13 +35,14 @@ class PatientInfo extends Component {
 						bed={bedNumber}
 					/>
 
-					{/* wounds comp */}
+					{/* wounds component */}
 					<div>
 						{
 							this.props.wounds.map((wound) => {
 								return (
 									<WoundCard 
-										id={wound.id}
+										key={wound.id}
+										woundId={wound.id}
 										woundImg={wound.attributes.imageUrl}
 										bodyLocation={wound.attributes.bodyLocation}
 										resolved={wound.attributes.resolved}
