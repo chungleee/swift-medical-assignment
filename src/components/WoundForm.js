@@ -5,61 +5,59 @@ import { connect } from 'react-redux'
 import { getWound, updateWound } from '../actions/woundsActions'
 
 class WoundForm extends Component {
-	state = {
-		bodyLocation: '',
-		type: '',
-		inHouseAcquired: '',
-		resolved: '',
-		imageUrl: ''
-	}
+	// state = {
+	// 	bodyLocation: '',
+	// 	type: '',
+	// 	inHouseAcquired: '',
+	// 	resolved: '',
+	// 	imageUrl: ''
+	// }
 
-	handleOnChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		})
-	}
+	// handleOnChange = (e) => {
+	// 	this.setState({
+	// 		[e.target.name]: e.target.value
+	// 	})
+	// }
 
-	handleOnUpdate = () => {
-		const { bodyLocation, type, inHouseAcquired, resolved, imageUrl } = this.state
-		const data = {
-			type: "wounds",
-			id: this.props.match.params.woundId,
-			attributes: {
-				type,
-				bodyLocation,
-				inHouseAcquired,
-				resolved,
-				imageUrl
-			}
-		}
+	// handleOnUpdate = () => {
+	// 	const { bodyLocation, type, inHouseAcquired, resolved, imageUrl } = this.state
+	// 	const data = {
+	// 		type: "wounds",
+	// 		id: this.props.match.params.woundId,
+	// 		attributes: {
+	// 			type,
+	// 			bodyLocation,
+	// 			inHouseAcquired,
+	// 			resolved,
+	// 			imageUrl
+	// 		}
+	// 	}
 
-		axios
-			.patch(`http://0.0.0.0:3000/wounds/${this.props.match.params.woundId}`, { data }, {
-				headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json"
-				}
-			})
-			.then(response => {
-				console.log(response)
-			})
-			.catch(error => {
-				console.log(error)
-			})
-	}
+	// 	axios
+	// 		.patch(`http://0.0.0.0:3000/wounds/${this.props.match.params.woundId}`, { data }, {
+	// 			headers: {
+	// 				"Accept": "application/json",
+	// 				"Content-Type": "application/json"
+	// 			}
+	// 		})
+	// 		.then(response => {
+	// 			console.log(response)
+	// 		})
+	// 		.catch(error => {
+	// 			console.log(error)
+	// 		})
+	// }
 	
-	componentDidMount() {
-		this.props.getWound(this.props.match.params.woundId)
-	}
+	// componentDidMount() {
+	// 	const { woundId } = this.props.match.params
+	// 	this.props.getWound(woundId)
+	// }
 
 	render() {
-		const { bodyLocation, imageUrl, inHouseAcquired, resolved, type } = this.props.wound
-		console.log(this.props.wound)
-		return this.props.wound.length === 0
-			? (
-				<div>...Loading...</div>
-			)
-			: (
+		const { bodyLocation, woundImg, inHouseAcquired, resolved, type, patientId } = this.props.location.state.woundInfo
+		return (
+				<div>
+				<Link to={`/patients/${patientId}`}>Back to patient info</Link>
 				<div className='container' style={{'padding': '3rem', 'maxWidth': '700px'}}>
 					<div className="field">
 						<div className="label">Wound type</div>
@@ -98,20 +96,21 @@ class WoundForm extends Component {
 					<div className="field">
 						<div className="label">Image URL</div>
 						<div className="control">
-							<input onChange={this.handleOnChange} name='imageUrl' defaultValue={imageUrl} type="text" className="input"/>
+							<input onChange={this.handleOnChange} name='woundImg' defaultValue={woundImg} type="text" className="input"/>
 						</div>
 					</div>
 					<button onClick={this.handleOnUpdate} className="button is-primary is-rounded">Save</button>
+				</div>
 				</div>
 			)
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		wound: state.woundById.wound
-	}
-}
+// const mapStateToProps = (state) => {
+// 	return {
+// 		wound: state.woundById.wound
+// 	}
+// }
 
-
-export default connect(mapStateToProps, { getWound })(WoundForm)
+export default WoundForm
+// export default connect(mapStateToProps, { getWound })(WoundForm)
