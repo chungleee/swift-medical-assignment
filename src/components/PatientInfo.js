@@ -8,8 +8,9 @@ import WoundCard from './WoundCard';
 class PatientInfo extends Component {
 	// fetch info on mount
 	componentDidMount() {
-		this.props.getPatientInfo(this.props.match.params.patientId)
-		this.props.getPatientWounds(this.props.match.params.patientId)
+		const { patientId } = this.props.match.params
+		this.props.getPatientInfo(patientId)
+		this.props.getPatientWounds(patientId)
 	}
 	
 	// if both state object properties are not populated, render loading
@@ -45,10 +46,12 @@ class PatientInfo extends Component {
 									<WoundCard 
 										key={wound.id}
 										woundId={wound.id}
+										patientId={this.props.match.params.patientId}
 										woundImg={wound.attributes.imageUrl}
 										bodyLocation={wound.attributes.bodyLocation}
 										resolved={wound.attributes.resolved}
 										inHouseAcquired={wound.attributes.inHouseAcquired}
+										type={wound.attributes.type}
 									/>
 								)
 							})
