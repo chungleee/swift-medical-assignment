@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import PatientList from './components/PatientList';
 import PatientInfo from './components/PatientInfo';
-import WoundForm from './components/WoundForm';
+import FormikWoundForm from './components/FormikWoundForm';
 
 class App extends Component {
 	render() {
@@ -22,7 +22,7 @@ class App extends Component {
 
 					<Route 
 						path='/wounds/:woundId'
-						component={WoundForm}
+						component={FormikWoundForm}
 					/>
 				</div>
 			</Router>
